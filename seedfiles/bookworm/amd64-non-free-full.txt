@@ -1,0 +1,1350 @@
+#_preseed_V1
+
+############################
+#### arb-common_6.0.6-5_all.deb
+############################
+
+### Description: ARB PT-server administrators:
+#   The default configuration of PT-server slots in /etc/arb/arb_tcp.dat
+#   gives ARB three global slots accessible by all users (connecting to
+#   localhost:${PORT}), as well as three slots to give private per-user
+#   access (connecting to ~/.arb_pts/${USER}${NUMBER}.socket).
+#   .
+#   Only members of the "arb" system group will be able to build and update
+#   the shared PT-servers. Please enter the login names for these privileged
+#   users.
+# d-i arb/group multiselect <choice(s)>
+# Possible choices: ${users}
+
+############################
+#### distributed-net_2.9112.521+arm64-3_amd64.deb
+############################
+
+### Description: Run the distributed.net client configuration utility?
+#   The distributed.net client needs to be configured before it can be used.
+#   While most options have reasonable defaults, you need to specify the e-mail
+#   address to which you would like distributed.net to credit any work done by
+#   the client. If you are installing the distributed-net package for the first
+#   time, then you must configure the client, otherwise the distributed.net client
+#   will refuse to start.
+#   .
+#   When the distributed.net client is run as a daemon (via /etc/init.d/distributed-net),
+#   the output will be redirected to /var/log/distributed-net.log. You do not
+#   need to set up a log file. Since the init script is controlling the
+#   distributed.net client, you should not enable "quiet mode" as that breaks the
+#   init script.
+# d-i distributed-net/fullconfig boolean false
+
+############################
+#### fex_20160919-2_all.deb
+############################
+
+### Description: Last installed version for internal use
+#   To upgrade the htdocs dir postinst needs to know the last installed 
+#   version and verify its htdocs contents to the internal database
+#   and make sure only unaltered files are overwritten.
+# d-i fex/lastver string 0
+
+############################
+#### firebuild_0.2.12-3_amd64.deb
+############################
+
+### Description: Do you accept the terms of the Firebuild license?
+#   Firebuild users are required to acknowledge and accept the license.
+#   Please find it below. If you accept this license, the package
+#   installation will continue. If you refuse it, it will be interrupted.
+#   .
+#   Firebuild is free for personal use or commercial trial.
+#   .
+#   Non-trial commercial use requires licenses available from https://firebuild.com.
+#   .
+#   Modification and redistribution are permitted, but commercial use of derivative works is subject to the same requirements of this license.
+#   .
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#   SOFTWARE.
+# d-i firebuild/license-accepted boolean false
+
+############################
+#### google-android-build-tools-19.1.0-installer_19.1.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-20.0.0-installer_20.0.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-21.1.2-installer_21.1.2+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-22.0.1-installer_22.0.1+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-23.0.1-installer_23.0.1+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-23.0.2-installer_23.0.2+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-23.0.3-installer_23.0.3+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-24.0.0-installer_24.0.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-24.0.1-installer_24.0.1+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-24.0.2-installer_24.0.2+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-24.0.3-installer_24.0.3+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-25.0.0-installer_25.0.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-25.0.1-installer_25.0.1+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-25.0.2-installer_25.0.2+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-25.0.3-installer_25.0.3+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-26.0.0-installer_26.0.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-26.0.1-installer_26.0.1+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-26.0.2-installer_26.0.2+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-26.0.3-installer_26.0.3+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-27.0.0-installer_27.0.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-27.0.1-installer_27.0.1+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-27.0.2-installer_27.0.2+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-27.0.3-installer_27.0.3+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-28.0.0-installer_28.0.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-28.0.1-installer_28.0.1+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-28.0.2-installer_28.0.2+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-28.0.3-installer_28.0.3+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-29.0.0-installer_29.0.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-29.0.1-installer_29.0.1+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-29.0.2-installer_29.0.2+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-29.0.3-installer_29.0.3+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-30.0.0-installer_30.0.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-30.0.1-installer_30.0.1+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-30.0.2-installer_30.0.2+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-30.0.3-installer_30.0.3+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-31.0.0-installer_31.0.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-32.0.0-installer_32.0.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-33.0.0-installer_33.0.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-build-tools-33.0.1-installer_33.0.1+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-cmdline-tools-1.0-installer_1.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-cmdline-tools-2.1-installer_2.1+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-cmdline-tools-3.0-installer_3.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-cmdline-tools-4.0-installer_4.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-cmdline-tools-5.0-installer_5.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-cmdline-tools-6.0-installer_6.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-cmdline-tools-7.0-installer_7.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-cmdline-tools-8.0-installer_8.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-cmdline-tools-9.0-installer_9.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-emulator-installer_31.3.15+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-extras-google-auto-installer_2.0.2+really2.0+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r10e-installer_10.4+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r16b-installer_16.1.4479499+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r17c-installer_17.2.4988734+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r18b-installer_18.1.5063045+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r19c-installer_19.2.5345600+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r20-installer_20.0.5594570+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r20b-installer_20.1.5948944+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r21-installer_21.0.6113669+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r21b-installer_21.1.6352462+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r21c-installer_21.2.6472646+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r21d-installer_21.3.6528147+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r21e-installer_21.4.7075529+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r22-installer_22.0.7026061+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r22b-installer_22.1.7171670+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r23-installer_23.0.7599858+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r23b-installer_23.1.7779620+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r23c-installer_23.2.8568313+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r24-installer_24.0.8215888+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r25-installer_25.0.8775105+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r25b-installer_25.1.8937393+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-ndk-r25c-installer_25.2.9519653+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-patcher-4-installer_4+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-10-installer_10+r2.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-11-installer_11+r2.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-12-installer_12+r3.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-13-installer_13+r1.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-14-installer_14+r4.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-15-installer_15+r5.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-16-installer_16+r5.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-17-installer_17+r3.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-18-installer_18+r3.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-19-installer_19+r4.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-20-installer_20+r2.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-21-installer_21+r2.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-22-installer_22+r2.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-23-installer_23+r3.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-24-installer_24+r2.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-25-installer_25+r3.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-26-installer_26+r2.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-27-installer_27+r3.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-28-installer_28+r6.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-29-installer_29+r5.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-30-installer_30+r3.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-31-installer_31+r1.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-32-installer_32+r1.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-33-installer_33+r2.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-33-tiramisuprivacysandbox-installer_33-tiramisuprivacysandbox+r9.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-7-installer_7+r3.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-8-installer_8+r3.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-9-installer_9+r2.1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-platform-tools-installer_33.0.3+1675172738_amd64.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-15-installer_15+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-16-installer_16+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-17-installer_17+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-18-installer_18+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-19-installer_19+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-20-installer_20+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-21-installer_21+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-22-installer_22+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-23-installer_23+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-24-installer_24+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-25-installer_25+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-26-installer_26+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-27-installer_27+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-28-installer_28+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-29-installer_29+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-30-installer_30+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-31-installer_31+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-32-installer_32+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### google-android-sources-33-installer_33+1675172738_all.deb
+############################
+
+### Description: Mirror to download packages ?
+#   Please select your preferred mirror to download Google's Android packages from.
+# d-i google-android-installers/mirror select https://dl.google.com
+# Possible choices: https://dl.google.com, http://mirrors.neusoft.edu.cn
+
+############################
+#### libmkl-dev_2020.4.304-4_amd64.deb
+############################
+
+### Description: Use libmkl_rt.so as the default alternative to BLAS/LAPACK?
+#   Intel MKL's Single Dynamic Library (SDL) is installed on your machine. This
+#   shared object can be used as an alternative to both libblas.so.3 and
+#   liblapack.so.3, so that packages built against BLAS/LAPACK can directly use
+#   MKL without rebuild.
+#   .
+#   However, MKL is non-free software, and in particular its source code is not
+#   publicly available. By using MKL as the default BLAS/LAPACK implementation,
+#   you might be violating the licensing terms of copyleft software that would
+#   become dynamically linked against it. Please verify that the licensing terms
+#   of the program(s) that you intend to use with MKL are compatible with the MKL
+#   licensing terms. For the case of software under the GNU General Public
+#   License, you may want to read this FAQ:
+#   .
+#       https://www.gnu.org/licenses/gpl-faq.html#GPLIncompatibleLibs
+#   .
+#   If you don't know what MKL is, or unwilling to set it as default, just choose
+#   the preset value or simply type Enter.
+# d-i libmkl-rt/use-as-default-blas-lapack boolean false
+
+### Description: Which of the these alternatives should point to MKL?
+#   Please select the alternatives that should point to MKL.
+#   The selection applies to all available architectures, and the related
+#   development packages will follow the same selection.
+#   .
+#   Typically the user may want to point both BLAS/LAPACK to MKL (libmkl_rt.so).
+#   Type Enter if you are not sure what to select.
+# d-i libmkl-rt/exact-so-3-selections multiselect libblas.so.3, liblapack.so.3, libblas64.so.3, liblapack64.so.3,
+# Possible choices: libblas.so.3, liblapack.so.3, libblas64.so.3, liblapack64.so.3,
+
+############################
+#### libmkl-rt_2020.4.304-4_amd64.deb
+############################
+
+### Description: Use libmkl_rt.so as the default alternative to BLAS/LAPACK?
+#   Intel MKL's Single Dynamic Library (SDL) is installed on your machine. This
+#   shared object can be used as an alternative to both libblas.so.3 and
+#   liblapack.so.3, so that packages built against BLAS/LAPACK can directly use
+#   MKL without rebuild.
+#   .
+#   However, MKL is non-free software, and in particular its source code is not
+#   publicly available. By using MKL as the default BLAS/LAPACK implementation,
+#   you might be violating the licensing terms of copyleft software that would
+#   become dynamically linked against it. Please verify that the licensing terms
+#   of the program(s) that you intend to use with MKL are compatible with the MKL
+#   licensing terms. For the case of software under the GNU General Public
+#   License, you may want to read this FAQ:
+#   .
+#       https://www.gnu.org/licenses/gpl-faq.html#GPLIncompatibleLibs
+#   .
+#   If you don't know what MKL is, or unwilling to set it as default, just choose
+#   the preset value or simply type Enter.
+# d-i libmkl-rt/use-as-default-blas-lapack boolean false
+
+### Description: Which of the these alternatives should point to MKL?
+#   Please select the alternatives that should point to MKL.
+#   The selection applies to all available architectures, and the related
+#   development packages will follow the same selection.
+#   .
+#   Typically the user may want to point both BLAS/LAPACK to MKL (libmkl_rt.so).
+#   Type Enter if you are not sure what to select.
+# d-i libmkl-rt/exact-so-3-selections multiselect libblas.so.3, liblapack.so.3, libblas64.so.3, liblapack64.so.3,
+# Possible choices: libblas.so.3, liblapack.so.3, libblas64.so.3, liblapack64.so.3,
+
+############################
+#### kstars-data-extra-tycho2_1.1r1-9.1_all.deb
+############################
+
+### Description: Action for the /etc/kde4/kstarsrc file:
+#   A kstars global configuration file already exists.
+#   .
+#   The package installation process can't modify it, but you can
+#   back it up now and create a new one. You will be prompted for
+#   options in this file.
+# d-i kstars-data-extra/kstarsrc-exists select keep
+# Possible choices: keep, replace (preserving backup), overwrite
+
+### Description: Create /etc/kde4/kstarsrc file?
+#   There is no kstars global configuration file. 
+#   .
+#   A configuration file will be needed if user downloads should be
+#   disabled, but if not then it is still safe to create one. You will
+#   be prompted for options in this file.
+# d-i kstars-data-extra/kstarsrc-does-not-exist boolean true
+
+### Description: User data downloads for kstars:
+#   KStars has a download feature allowing users to download extra data
+#   files for their own use. Since packaged catalogs can be handled more
+#   efficiently by installing a single central copy, you may wish to
+#   restrict the use of this feature.
+#   .
+#    * enable - users will be able to download data files;
+#    * disable - individual users can re-enable data downloads (to
+#      download other data files) in their .kstarsrc;
+#    * lock - users cannot enable data downloads.
+# d-i kstars-data-extra/disable-downloads select lock
+# Possible choices: enable, disable, lock
+
+### Description: for internal use
+#   Not shown question to hold some data in the database
+# d-i kstars-data-extra/kstarsrc-previously-exists select unset
+# Possible choices: unset, previously exists, does not exist
+
+############################
+#### nvidia-cudnn_8.5.0.96~cuda11.7_amd64.deb
+############################
+
+### Description: Do you agree to all terms of the Nvidia cuDNN License Agreement?
+#   Nvidia cuDNN License Agreement
+# d-i nvidia-cudnn/question select <choice>
+# Possible choices: I Decline, I Agree
+
+############################
+#### nvidia-legacy-check_525.147.05-4~deb12u1_amd64.deb
+############################
+
+### Description: for internal use
+#   Can be preseeded. If set to false, disables the check for
+#   old GPUs that require a legacy driver instead of this driver.
+# d-i nvidia-driver/check-for-unsupported-gpu boolean true
+
+### Description: for internal use
+#   Remembers the name of the legacy driver where the
+#   install-even-if-unsupported-gpu-exists question was answered with "yes".
+#   The question will be asked again if the legacy driver name changes.
+# d-i nvidia-driver/supported-in-legacy-driver-name string 
+
+### Description: Install ${vendor} driver despite unsupported graphics card?
+#   This system has a graphics card which is no longer handled by the ${vendor}
+#   driver (package ${driver}). You may wish to keep the package installed -
+#   for instance to drive some other card - but the card with the following
+#   chipset won't be usable:
+#   .
+#   ${unsupported-device}
+#   .
+#   The above card requires either the non-free legacy ${vendor} driver
+#   (package ${legacy_driver}) or the free ${free_name} driver
+#   (package ${free_driver}).
+#   .
+#   Use the update-glx command to switch between different installed drivers.
+#   .
+#   Before the ${free_name} driver can be used you must
+#   remove ${vendor} configuration from xorg.conf (and xorg.conf.d/).
+# d-i nvidia-driver/install-even-if-unsupported-gpu-exists boolean false
+
+############################
+#### nvidia-tesla-legacy-check_525.147.05-4~deb12u1_amd64.deb
+############################
+
+### Description: for internal use
+#   Can be preseeded. If set to false, disables the check for
+#   old GPUs that require a legacy driver instead of this driver.
+# d-i nvidia-driver/check-for-unsupported-gpu boolean true
+
+### Description: for internal use
+#   Remembers the name of the legacy driver where the
+#   install-even-if-unsupported-gpu-exists question was answered with "yes".
+#   The question will be asked again if the legacy driver name changes.
+# d-i nvidia-driver/supported-in-legacy-driver-name string 
+
+### Description: Install ${vendor} driver despite unsupported graphics card?
+#   This system has a graphics card which is no longer handled by the ${vendor}
+#   driver (package ${driver}). You may wish to keep the package installed -
+#   for instance to drive some other card - but the card with the following
+#   chipset won't be usable:
+#   .
+#   ${unsupported-device}
+#   .
+#   The above card requires either the non-free legacy ${vendor} driver
+#   (package ${legacy_driver}) or the free ${free_name} driver
+#   (package ${free_driver}).
+#   .
+#   Use the update-glx command to switch between different installed drivers.
+#   .
+#   Before the ${free_name} driver can be used you must
+#   remove ${vendor} configuration from xorg.conf (and xorg.conf.d/).
+# d-i nvidia-driver/install-even-if-unsupported-gpu-exists boolean false
+
+############################
+#### trn4_4.0-test77-16_amd64.deb
+############################
+
+### Description: What news server should be used for reading and posting news?
+#   trn is configured to read news via an NNTP connection, and needs to know
+#   the fully-qualified host name of the server (such as news.example.com). If
+#   you have a local news spool, you should consider installing some NNTP
+#   server like inn2; in that case, enter "localhost" as your news server.
+# d-i shared/news/server string <string>
+
+### Description: What is your system's mail name?
+#   Please enter the 'mail name' of your system. This is the hostname portion
+#   of the address to be shown on outgoing news and mail messages, and is used
+#   by many packages. trn4 users may override this individually by setting the
+#   FROM environment variable.
+# d-i trn4/mail-name string <string>
