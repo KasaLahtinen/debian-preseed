@@ -4,6 +4,7 @@ Debian install  preseeding
 =======
 
 This repository should contain basic information on debian image preseeding
+<<<<<<< HEAD
 [Netinst ISO file](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.4.0-amd64-netinst.iso)
 
 Unpacking Debian installation media:
@@ -26,3 +27,6 @@ genisoimage -r -J -b isolinux/isolinux.bin -c isolinux/boot.cat \
 ```
 This information was obtained from [Debian Wiki](https://wiki.debian.org/DebianInstaller/Preseed/EditIso)
 >>>>>>> bfceaa3 (Update README.md)
+=======
+Netinst ISO file https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.4.0-amd64-netinst.iso
+>>>>>>> bed8198 (Update README.md)
