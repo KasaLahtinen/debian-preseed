@@ -3,10 +3,14 @@
 ISOFILE_IN="../iso/debian-12.4.0-amd64-netinst.iso"
 ISOFILE_OUT="../iso/preseed-debian-12.4.0-amd64-netinst.iso"
 
+# check for required binaries
 required_bin=("bsdtar" "gunzip" "gzip" "genisoimage")
 for bin in "${required_bin[@]}"; do
 	if bin_path=$(command -v $bin); then
 	  echo "Found $bin in $bin_path"
+    else
+      echo "$bin not found!"
+      exit 1
 	fi
 done
 
@@ -18,12 +22,16 @@ touch ../isofiles/README.md
 bsdtar -C ../isofiles/ -xf $ISOFILE_IN
 
 chmod +w -R ../isofiles/isolinux/
+chmod +w -R ../isofiles/boot/
 chmod +w -R ../isofiles/install.amd/
+#cp ../seedfiles/qemu-preseed.txt ./preseed.cfg
+#cp ../grub.cfg ../isofiles/boot/grub/grub.cfg
+cp isolinux.cfg ../isofiles/isolinux/
 gunzip ../isofiles/install.amd/initrd.gz
-cp ../seedfiles/example-preseed.txt ./preseed.cfg
 echo preseed.cfg | cpio -H newc -o -A -F ../isofiles/install.amd/initrd
 gzip ../isofiles/install.amd/initrd
 chmod -w -R ../isofiles/install.amd/
+
 
 
 cd ../isofiles

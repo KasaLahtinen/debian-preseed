@@ -16,6 +16,8 @@ echo preseed.cfg | cpio -H newc -o -A -F isofiles/install.amd/initrd
 gzip isofiles/install.amd/initrd
 chmod -w -R isofiles/install.amd/
 ```
+This preseed.cfg will only work on text based installer. By default Debian 12 on an qemu virtual machine boot up graphical installer which uses a different initrd.gz
+
 Regenerating bootable ISO file:
 ```
 genisoimage -r -J -b isolinux/isolinux.bin -c isolinux/boot.cat \
