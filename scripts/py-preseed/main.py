@@ -12,6 +12,7 @@ import subprocess
 import sys
 import argparse
 from pathlib import Path
+from parser import PreseedParser
 
 def check_requirements():
     """Ensure all required system binaries are available."""
@@ -61,6 +62,22 @@ def main():
     preseed_src = Path(args.preseed)
 
     check_requirements()
+
+    # Display configuration options using the parser library
+    if preseed_src.exists():
+        print(f"--- Parsing preseed configuration: {preseed_src.name}")
+        try:
+            pp = PreseedParser()
+            config_data = pp.parse(str(preseed_src))
+            print("\nActive Preseed Configuration:")
+            print(f"{'Setting Key':<50} | {'Value'}")
+            print("-" * 75)
+            for item in config_data:
+                if item.get("key"):
+                    print(f"{item['key']:<50} | {item['value']}")
+            print("-" * 75 + "\n")
+        except Exception as e:
+            print(f"Warning: Could not summarize configuration: {e}")
 
     if not iso_in.exists():
         print(f"Error: Input ISO not found at {iso_in}")
