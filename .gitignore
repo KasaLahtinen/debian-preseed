@@ -3,3 +3,7 @@ isofiles/debian
 isofiles/dists/stable
 iso/debian-12.4.0-amd64-netinst.iso
 iso/preseed-debian-12.4.0-amd64-netinst.iso 
+
+scripts/py-preseed/node_modules/
+scripts/py-preseed/package-lock.json
+
