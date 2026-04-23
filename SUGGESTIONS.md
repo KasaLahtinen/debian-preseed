@@ -48,6 +48,15 @@ A standard Ansible directory layout has been scaffolded.
 
 ---
 
+## 5. SSH Key Embedding ✅ **(COMPLETED)**
+
+We have modified the shell script and the preseed configuration to optionally support embedding an SSH public key for immediate password-less root access post-installation.
+
+**Completed Actions:**
+- **Conditional Embedding in Initrd:** Modified `scripts/merge-preseed.sh` to check for the existence of `scripts/authorized_keys`. If it exists, it is securely bundled into the installer's `initrd` archive alongside `preseed.cfg`.
+- **Conditional Target Copying:** Appended a `d-i preseed/late_command` to `scripts/preseed.cfg` that safely copies the key from the installer environment into `/target/root/.ssh/authorized_keys` and sets the correct permissions (only if the key was provided during the build).
+
+---
 ## Proposed Directory Structure
 
 Implementing the above suggestions would result in a cleaner, modular architecture:
