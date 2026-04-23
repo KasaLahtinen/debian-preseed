@@ -2,13 +2,13 @@
 Automated Debian Installation Preseeding
 
 This repository contains tools and configuration files to create customized Debian installation media using the `preseed` mechanism.
+It also includes a powerful parsing engine and a React-based UI for dynamic configuration management.
 
 ## Prerequisites
 
-- `bsdtar` (from libarchive-tools)
-- `genisoimage`
-- `cpio`
-- `gzip` / `gunzip`
+- **System Utilities**: `bsdtar` (from libarchive-tools), `genisoimage`, `cpio`, `gzip`
+- **Python**: Python 3.8+
+- **Node.js**: (Optional) For the React-based Form Designer
 
 ## Quick Start
 
@@ -27,6 +27,16 @@ This repository contains tools and configuration files to create customized Debi
    ```
 
 4. The output ISO will be located at `iso/preseed-debian-12.4.0-amd64-netinst.iso`.
+
+## Project Structure
+
+- `scripts/`: Contains the primary automation scripts.
+  - `py-preseed/`: Python-based tools including the ISO creator and parser.
+  - `merge-preseed.sh`: Legacy shell-based ISO creator.
+- `seedfiles/`: A library of preseed templates and example configurations.
+  - `bookworm/`: Full template exports for Debian 12.
+- `iso/`: Directory for source and customized ISO images.
+- `isofiles/`: Working directory used during ISO extraction and modification.
 
 ## Preseed Parser Library
 
