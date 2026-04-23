@@ -4,15 +4,15 @@ After reviewing the `debian-preseed` project structure and source files, I have 
 
 ---
 
-## 1. Git Configuration (`.gitignore`)
+## 1. Git Configuration (`.gitignore`) ✅ **(COMPLETED)**
 
-The current `.gitignore` is missing several standard patterns and hardcodes too many specific paths. 
+The `.gitignore` has been updated with several standard patterns and cleaned up to prevent hardcoding specific paths. 
 
-**Suggestions:**
-- **Globalize Node and Python Ignores:** Instead of explicitly targeting `scripts/py-preseed/node_modules/` and `scripts/py-preseed/__pycache__`, ignore them globally by adding `/node_modules/`, `node_modules/`, `__pycache__/`, `*.py[cod]`, and `venv/` to `.gitignore`.
-- **Wildcard ISO Files:** Currently, the ignore file lists specific Debian ISO versions (`iso/debian-12.4.0-amd64-netinst.iso`). Use a wildcard like `iso/*.iso` so future updates to the base image don't accidentally get checked into Git.
-- **Environment and IDE Files:** Add standard ignores for IDEs and environment variables: `.vscode/`, `.idea/`, `.env`, `.env.*`.
-- **Ansible Artifacts:** Add `*.retry` to ignore failed Ansible playbook run artifacts.
+**Completed Actions:**
+- **Globalized Node and Python Ignores:** Ignored them globally by adding `/node_modules/`, `node_modules/`, `__pycache__/`, `*.py[cod]`, and `venv/` to `.gitignore`.
+- **Wildcarded ISO Files:** Used a wildcard `iso/*.iso` so future updates to the base image don't accidentally get checked into Git.
+- **Environment and IDE Files:** Added standard ignores for IDEs and environment variables: `.vscode/`, `.idea/`, `.env`, `.env.*`.
+- **Ansible Artifacts:** Added `*.retry` to ignore failed Ansible playbook run artifacts.
 
 ---
 

@@ -1,11 +1,26 @@
+# Build/Work directories
 isofiles/
-isofiles/debian
-isofiles/dists/stable
-iso/debian-12.4.0-amd64-netinst.iso
-iso/preseed-debian-12.4.0-amd64-netinst.iso 
 
-scripts/py-preseed/node_modules/
+# ISO Files
+iso/*.iso
+
+# Node.js
+node_modules/
 scripts/py-preseed/package-lock.json
-scripts/py-preseed/__pycache__
 
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
 
+# Environment Variables
+.env
+.env.*
+
+# IDEs / Editor
+.vscode/
+.idea/
+
+# Ansible
+*.retry
