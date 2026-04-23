@@ -1,6 +1,7 @@
 import re
 from pathlib import Path
 from typing import List, Dict, Any, Optional
+import json # Import for JSON output
 
 class PreseedParser:
     """
@@ -96,6 +97,80 @@ class PreseedParser:
                 item["choices"] = ["true", "false"]
         return items
 
+    def to_json_schema(self, parsed_data: List[Dict[str, Any]], title: str = "Debian Preseed Configuration", description: str = "Schema for Debian Preseed configuration options") -> Dict[str, Any]:
+        """
+        Converts parsed preseed data into a JSON Schema.
+        """
+        schema = {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": title,
+            "description": description,
+            "type": "object",
+            "properties": {},
+            "additionalProperties": False # By default, disallow properties not defined in the schema
+        }
+
+        for item in parsed_data:
+            key = item["key"]
+            if not key:
+                continue
+
+            prop_schema: Dict[str, Any] = {
+                "description": item["description"] if item["description"] else f"Configuration for {key}"
+            }
+
+            # Map preseed types to JSON schema types and add constraints
+            if item["type"] == "string":
+                prop_schema["type"] = "string"
+                # Add format for password fields based on value placeholder
+                if item["value"] == "<password>":
+                    prop_schema["format"] = "password"
+            elif item["type"] == "boolean":
+                prop_schema["type"] = "boolean"
+                # Convert string choices to actual boolean literals for JSON schema enum
+                if item["choices"] == ["true", "false"]:
+                    prop_schema["enum"] = [True, False]
+            elif item["type"] == "select":
+                prop_schema["type"] = "string" # Select choices are usually strings
+                if item["choices"] and not isinstance(item["choices"], str) and item["choices"] != ["<choice>"]:
+                    prop_schema["enum"] = item["choices"]
+                elif isinstance(item["choices"], str) and item["choices"].startswith("${"):
+                    prop_schema["description"] += f" (Dynamic choices: {item['choices']})"
+            elif item["type"] == "multiselect":
+                prop_schema["type"] = "array"
+                prop_schema["uniqueItems"] = True
+                if item["choices"] and not isinstance(item["choices"], str) and item["choices"] != ["<choice(s)>"]:
+                    prop_schema["items"] = {"type": "string", "enum": item["choices"]}
+                elif isinstance(item["choices"], str) and item["choices"].startswith("${"):
+                    prop_schema["description"] += f" (Dynamic choices: {item['choices']})"
+                    prop_schema["items"] = {"type": "string"} # Indicate array of strings, but enum is dynamic
+                else:
+                    prop_schema["items"] = {"type": "string"} # Default to array of strings
+            elif item["type"] in ["text", "note", "password"]: # Treat text and note as strings for schema purposes
+                prop_schema["type"] = "string"
+                if item["type"] == "password":
+                    prop_schema["format"] = "password"
+            else:
+                # Default to string for unknown or generic types
+                prop_schema["type"] = "string"
+            
+            # Add default value if present and not a placeholder
+            if item["value"] and item["value"] not in ["<string>", "<choice>", "<choice(s)>", "<password>"]:
+                if prop_schema["type"] == "boolean":
+                    prop_schema["default"] = (item["value"].lower() == "true")
+                elif prop_schema["type"] == "array":
+                    # For multiselect, default value might be a comma-separated string
+                    # or a single value. This needs careful handling.
+                    if item["value"]:
+                        default_values = [v.strip() for v in item["value"].split(',')]
+                        prop_schema["default"] = default_values
+                else:
+                    prop_schema["default"] = item["value"]
+
+            schema["properties"][key] = prop_schema
+        
+        return schema
+
 if __name__ == "__main__":
     # Example Usage
     parser = PreseedParser()
@@ -110,5 +185,18 @@ if __name__ == "__main__":
             sample = dropdowns[0]
             print(f"\nExample Dropdown Item:")
             print(f"Key: {sample['key']}\nLabel: {sample['description']}\nChoices: {sample['choices']}")
+
+        # Demonstrate JSON Schema generation
+        print("\n--- Generating JSON Schema ---")
+        json_schema = parser.to_json_schema(data, title="Debian Bookworm Preseed Options", description="Configuration options extracted from Debian Bookworm amd64-main-full.txt")
+        # Print a portion of the schema for brevity, or the whole thing if desired
+        print(json.dumps(json_schema, indent=2))
+
+        # Example with a specific preseed.cfg
+        print("\n--- Parsing example-preseed.txt and generating JSON Schema ---")
+        preseed_data = parser.parse("../../seedfiles/example-preseed.txt")
+        preseed_schema = parser.to_json_schema(preseed_data, title="Custom Preseed Configuration", description="Schema for a custom preseed.cfg file")
+        print(json.dumps(preseed_schema, indent=2))
+
     except Exception as e:
         print(f"Error: {e}")
