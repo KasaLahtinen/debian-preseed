@@ -88,9 +88,27 @@ const PreseedForm = ({ data, onSubmit }) => {
         }
     };
 
+    // Group items by their 'group' property
+    const groupedData = data.reduce((acc, item) => {
+        const group = item.group || 'General';
+        if (!acc[group]) acc[group] = [];
+        acc[group].push(item);
+        return acc;
+    }, {});
+
     return (
         <form onSubmit={handleFormSubmit} className="preseed-form">
-            {data.map(renderField)}
+            {Object.entries(groupedData).map(([groupName, items]) => (
+                <fieldset
+                    key={groupName}
+                    style={{ border: '1px solid #ddd', padding: '20px', marginBottom: '30px', borderRadius: '8px' }}
+                >
+                    <legend style={{ padding: '0 10px', fontWeight: 'bold', fontSize: '1.2em', color: '#333' }}>
+                        {groupName}
+                    </legend>
+                    {items.map(renderField)}
+                </fieldset>
+            ))}
             <hr style={{ margin: '20px 0' }} />
             <button type="submit" style={{ padding: '10px 20px', cursor: 'pointer' }}>Generate Configuration</button>
         </form>
