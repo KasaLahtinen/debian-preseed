@@ -1,47 +1,60 @@
 #!/bin/bash
 
-ISOFILE_IN="../iso/debian-12.4.0-amd64-netinst.iso"
-ISOFILE_OUT="../iso/preseed-debian-12.4.0-amd64-netinst.iso"
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ISO_DIR="$BASE_DIR/iso"
+WORK_DIR="$BASE_DIR/isofiles"
+SCRIPTS_DIR="$BASE_DIR/scripts"
+
+ISOFILE_IN="${1:-$ISO_DIR/debian-12.4.0-amd64-netinst.iso}"
+ISOFILE_OUT="${2:-$ISO_DIR/preseed-debian-12.4.0-amd64-netinst.iso}"
+PRESEED_FILE="$SCRIPTS_DIR/preseed.cfg"
 
 # check for required binaries
-required_bin=("bsdtar" "gunzip" "gzip" "genisoimage")
+required_bin=("bsdtar" "gunzip" "gzip" "genisoimage" "cpio" "md5sum")
 for bin in "${required_bin[@]}"; do
-	if bin_path=$(command -v $bin); then
-	  echo "Found $bin in $bin_path"
-    else
-      echo "$bin not found!"
+    if ! command -v "$bin" >/dev/null 2>&1; then
+      echo "Error: $bin not found. Please install it."
       exit 1
-	fi
+    fi
 done
 
-# TEMPORARY
-chmod +w -R ../isofiles/*
-rm -rf ../isofiles/*
-touch ../isofiles/README.md
+if [ ! -f "$ISOFILE_IN" ]; then
+    echo "Error: Input ISO file not found: $ISOFILE_IN"
+    exit 1
+fi
 
-bsdtar -C ../isofiles/ -xf $ISOFILE_IN
+echo "Cleaning work directory..."
+rm -rf "$WORK_DIR"
+mkdir -p "$WORK_DIR"
 
-chmod +w -R ../isofiles/isolinux/
-chmod +w -R ../isofiles/boot/
-chmod +w -R ../isofiles/install.amd/
-#cp ../seedfiles/qemu-preseed.txt ./preseed.cfg
-#cp ../grub.cfg ../isofiles/boot/grub/grub.cfg
-# BIOS boot seems to be using isolinux instead of grub
-cp isolinux.cfg ../isofiles/isolinux/
-gunzip ../isofiles/install.amd/initrd.gz
-echo preseed.cfg | cpio -H newc -o -A -F ../isofiles/install.amd/initrd
-gzip ../isofiles/install.amd/initrd
-chmod -w -R ../isofiles/install.amd/
+echo "Extracting ISO: $ISOFILE_IN"
+bsdtar -C "$WORK_DIR" -xf "$ISOFILE_IN"
+chmod +w -R "$WORK_DIR"
 
-# not really sure about these checksums if they're needed
-cd ../isofiles
-chmod +w md5sum.txt
-find -follow -type f ! -name md5sum.txt -print0 | xargs -0 md5sum > md5sum.txt
-chmod -w md5sum.txt
-cd ../scripts
+echo "Modifying initrd..."
+if [ -f "$WORK_DIR/install.amd/initrd.gz" ]; then
+    gunzip "$WORK_DIR/install.amd/initrd.gz"
+    # We must be in the directory containing preseed.cfg for cpio to find it
+    (cd "$SCRIPTS_DIR" && echo "preseed.cfg" | cpio -H newc -o -A -F "$WORK_DIR/install.amd/initrd")
+    gzip "$WORK_DIR/install.amd/initrd"
+else
+    echo "Error: initrd.gz not found at expected location."
+    exit 1
+fi
 
+echo "Updating md5sums..."
+cd "$WORK_DIR"
+# md5sum.txt is usually part of the ISO, if it exists, update it.
+if [ -f md5sum.txt ]; then
+    find -follow -type f ! -name md5sum.txt -print0 | xargs -0 md5sum > md5sum.txt
+fi
+
+echo "Generating output ISO: $ISOFILE_OUT"
 genisoimage -r -J -b isolinux/isolinux.bin -c isolinux/boot.cat \
             -no-emul-boot -boot-load-size 4 -boot-info-table \
-            -o $ISOFILE_OUT ../isofiles
+            -o "$ISOFILE_OUT" "$WORK_DIR"
 
-
+echo "Done!"

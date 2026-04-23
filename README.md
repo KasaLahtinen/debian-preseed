@@ -1,10 +1,29 @@
 # debian-preseed
-Debian install  preseeding
+Automated Debian Installation Preseeding
 
-This repository should contain basic information on debian image preseeding
-[Netinst ISO file](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.4.0-amd64-netinst.iso)
+This repository contains tools and configuration files to create customized Debian installation media using the `preseed` mechanism.
 
-Unpacking Debian installation media:
+## Prerequisites
+
+- `bsdtar` (from libarchive-tools)
+- `genisoimage`
+- `cpio`
+- `gzip` / `gunzip`
+
+## Quick Start
+
+1. Download the Debian 12.4.0 Netinst ISO and place it in the `iso/` directory.
+2. Configure `scripts/preseed.cfg` to your liking.
+3. Run the automation script:
+   ```bash
+   cd scripts
+   ./merge-preseed.sh
+   ```
+4. The output ISO will be located at `iso/preseed-debian-12.4.0-amd64-netinst.iso`.
+
+## Manual Steps (for reference)
+
+### Unpacking Debian installation media:
 ```
 bsdtar -C DESTINATION -xf debian-10.2.0-amd64-netinst.iso
 ```
