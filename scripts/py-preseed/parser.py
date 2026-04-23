@@ -1,3 +1,5 @@
+
+import sys
 import re
 from pathlib import Path
 from typing import List, Dict, Any, Optional
@@ -171,32 +173,43 @@ class PreseedParser:
         
         return schema
 
-if __name__ == "__main__":
-    # Example Usage
-    parser = PreseedParser()
+def main():
+    import argparse
+    import sys
+
+    parser = argparse.ArgumentParser(description="Parse Debian Preseed and template files.")
+    parser.add_argument("input", help="Path to the preseed or template file")
+    parser.add_argument("--schema", action="store_true", help="Output as JSON Schema instead of raw data")
+    
+    args = parser.parse_args()
+    
+    preseed_parser = PreseedParser()
     try:
-        # Test with the full template file
-        data = parser.parse("../../seedfiles/bookworm/amd64-main-full.txt")
+        data = preseed_parser.parse(args.input)
         
-        print(f"Parsed {len(data)} items.")
-        # Show a sample item that would be a dropdown (select type)
-        dropdowns = [i for i in data if i["type"] == "select"]
-        if dropdowns:
-            sample = dropdowns[0]
-            print(f"\nExample Dropdown Item:")
-            print(f"Key: {sample['key']}\nLabel: {sample['description']}\nChoices: {sample['choices']}")
-
-        # Demonstrate JSON Schema generation
-#        print("\n--- Generating JSON Schema ---")
-#        json_schema = parser.to_json_schema(data, title="Debian Bookworm Preseed Options", description="Configuration options extracted from Debian Bookworm amd64-main-full.txt")
-        # Print a portion of the schema for brevity, or the whole thing if desired
-#        print(json.dumps(json_schema, indent=2))
-
-        # Example with a specific preseed.cfg
-        print("\n--- Parsing example-preseed.txt and generating JSON Schema ---")
-        preseed_data = parser.parse("../../seedfiles/example-preseed.txt")
-        preseed_schema = parser.to_json_schema(preseed_data, title="Custom Preseed Configuration", description="Schema for a custom preseed.cfg file")
-        print(json.dumps(preseed_schema, indent=2))
-
+        if args.schema:
+            output = preseed_parser.to_json_schema(data, title=Path(args.input).name)
+        else:
+            output = data
+            
+        print(json.dumps(output, indent=2))
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+if __name__ == "__main__":
+    # If running directly, default to the test logic provided earlier
+    if len(sys.argv) > 1:
+        main()
+    else:
+        # Default test run
+        p = PreseedParser()
+        try:
+            data = p.parse("../../seedfiles/example-preseed.txt")
+            print(f"Parsed {len(data)} items from example-preseed.txt")
+            # Show one item as a sample
+            if data:
+                print("\nSample Item (JSON):")
+                print(json.dumps(data[0], indent=2))
+        except Exception as e:
+            print(f"Error: {e}")

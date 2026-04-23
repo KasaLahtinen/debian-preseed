@@ -28,6 +28,24 @@ This repository contains tools and configuration files to create customized Debi
 
 4. The output ISO will be located at `iso/preseed-debian-12.4.0-amd64-netinst.iso`.
 
+## Preseed Parser Library
+
+Located in `scripts/py-preseed/`, this Python library parses Debian Preseed files (`.cfg`) and template files (`.txt`). It is designed to facilitate the creation of dynamic UI components and configuration validation.
+
+### Key Features
+- **UI-Ready Data**: Extracts descriptions, labels, and possible choices to build dropdown menus and forms dynamically.
+- **Template Support**: Handles complex template files like `amd64-main-full.txt` which contain rich metadata.
+- **JSON Schema Export**: Generates standard JSON Schemas from preseed data for frontend validation or API documentation.
+
+### Usage
+You can run the parser as a standalone script to inspect parsed data or generate schemas:
+
+```bash
+cd scripts/py-preseed
+# Parse a file and output structured JSON
+python3 parser.py ../../seedfiles/example-preseed.txt
+```
+
 ## Manual Steps (for reference)
 
 ### Unpacking Debian installation media:
