@@ -187,10 +187,10 @@ if __name__ == "__main__":
             print(f"Key: {sample['key']}\nLabel: {sample['description']}\nChoices: {sample['choices']}")
 
         # Demonstrate JSON Schema generation
-        print("\n--- Generating JSON Schema ---")
-        json_schema = parser.to_json_schema(data, title="Debian Bookworm Preseed Options", description="Configuration options extracted from Debian Bookworm amd64-main-full.txt")
+#        print("\n--- Generating JSON Schema ---")
+#        json_schema = parser.to_json_schema(data, title="Debian Bookworm Preseed Options", description="Configuration options extracted from Debian Bookworm amd64-main-full.txt")
         # Print a portion of the schema for brevity, or the whole thing if desired
-        print(json.dumps(json_schema, indent=2))
+#        print(json.dumps(json_schema, indent=2))
 
         # Example with a specific preseed.cfg
         print("\n--- Parsing example-preseed.txt and generating JSON Schema ---")
