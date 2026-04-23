@@ -40,13 +40,13 @@ The script `scripts/merge-preseed.sh` has been updated to be more dynamic and ro
 
 ---
 
-## 4. Ansible Infrastructure
+## 4. Ansible Infrastructure ✅ **(COMPLETED)**
 
-The `ansible/` directory currently only contains an inventory file (`inventory/volatile.yml`).
+A standard Ansible directory layout has been scaffolded.
 
-**Suggestions:**
-- **Standardize Layout:** Scaffold a standard Ansible directory structure. Include `playbooks/`, `roles/`, `group_vars/`, and `host_vars/`.
-- **Integration with Preseed:** If the goal is to use Ansible to handle post-installation configuration after the Preseed completes, consider setting up a dynamic inventory script or documenting exactly how the newly spun-up Preseed VMs are targeted by this `volatile.yml` inventory.
+**Completed Actions:**
+- **Standardized Layout:** Created the standard Ansible directories: `ansible/playbooks/`, `ansible/roles/`, `ansible/group_vars/`, and `ansible/host_vars/` (with `.gitkeep` files so they can be tracked in Git).
+- **Integration with Preseed (Pending User Decision):** The `volatile.yml` inventory remains untouched. Whenever ready, you can configure dynamic inventory or further document how newly spun-up VMs are targeted.
 
 ---
 
