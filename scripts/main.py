@@ -23,7 +23,7 @@ def check_requirements():
 def main():
     # Setup pathing relative to the script's location
     script_path = Path(__file__).resolve()
-    base_dir = script_path.parent.parent.parent
+    base_dir = script_path.parent.parent
     iso_dir = base_dir / "iso"
     work_dir = base_dir / "isofiles"
     scripts_dir = base_dir / "scripts"
