@@ -16,17 +16,15 @@ The `.gitignore` has been updated with several standard patterns and cleaned up 
 
 ---
 
-## 2. Project Structure & Architecture
+## 2. Project Structure & Architecture ✅ **(COMPLETED)**
 
-The `scripts/py-preseed` directory currently suffers from a "kitchen sink" anti-pattern, mixing Python, Node.js, and React files together.
+The project structure has been refactored to separate the React UI and the NodeJS backend.
 
-**Suggestions:**
-- **Separate Frontend and Backend:** Split the current UI and logic into `frontend/` and `backend/` directories.
-- **Remove Redundant Servers:** You currently have both `server.js` (Express) and `server.py` (Python `http.server`) doing the exact same thing (serving static files and coercing MIME types for `.jsx`). Pick one technology stack for your backend. Given the presence of `parser.py`, `pyproject.toml`, and the name `py-preseed`, Python (using FastAPI or Flask) would be the most cohesive choice.
-- **Modernize Frontend Build Process:** 
-  - The repository currently checks in a 3.1MB `babel.min.js` file for in-browser JSX transpilation. This is not suitable for production.
-  - Set up a modern frontend build tool like **Vite** (`npm create vite@latest`) to bundle your React application (`PreseedForm.jsx`, `PreseedLandingPage.jsx`).
-  - This allows you to completely remove `babel.min.js`, improve load times, and use standard Node/NPM workflows for the UI.
+**Completed Actions:**
+- **Separated Frontend and Backend:** Created `frontend/` and `backend/` directories.
+- **Modernized Frontend Build Process:** Scaffolded a Vite+React app. Converted the old in-browser tagged template literals (`htm`) into standard JSX components (`PreseedForm.jsx` and `PreseedLandingPage.jsx`) inside `frontend/src/`.
+- **Cleaned Up Dependencies:** Deleted the 3.1MB `babel.min.js`, `index.html`, and `server.py` test cases.
+- **Prepared Backend:** Moved the `server.js` and `package.json` to the `backend/` directory for the future Node-RED integration.
 
 ---
 
