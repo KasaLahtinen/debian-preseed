@@ -59,7 +59,12 @@ echo "Modifying initrd..."
 if [ -f "$WORK_DIR/install.amd/initrd.gz" ]; then
     gunzip "$WORK_DIR/install.amd/initrd.gz"
     # We must be in the directory containing preseed.cfg for cpio to find it
-    (cd "$SCRIPTS_DIR" && echo "preseed.cfg" | cpio -H newc -o -A -F "$WORK_DIR/install.amd/initrd")
+    (cd "$SCRIPTS_DIR" && {
+        echo "preseed.cfg"
+        if [ -f "authorized_keys" ]; then
+            echo "authorized_keys"
+        fi
+    } | cpio -H newc -o -A -F "$WORK_DIR/install.amd/initrd")
     gzip "$WORK_DIR/install.amd/initrd"
 else
     echo "Error: initrd.gz not found at expected location."
