@@ -36,11 +36,14 @@
     <script type="module">
         import React from 'react';
         import { createRoot } from 'react-dom/client';
+        import htm from 'htm';
         import PreseedLandingPage from './PreseedLandingPage.jsx';
+
+        const html = htm.bind(React.createElement);
 
         const container = document.getElementById('root');
         const root = createRoot(container);
-        root.render(<PreseedLandingPage />);
+        root.render(html`<${PreseedLandingPage} />`);
     </script>
 </body>
 
