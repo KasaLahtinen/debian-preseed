@@ -8,4 +8,5 @@ version = "0.1.0"
 description = "Automated Debian Preseed ISO Generator"
 readme = "README.md"
 requires-python = ">=3.8"
-authors = [{name = "Gemini Code Assist"}]
+authors = [{name = "Gemini Code Assist"},{name = "Kasa"}]
+license = {file = "LICENSE"}
