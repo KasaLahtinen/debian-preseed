@@ -48,7 +48,8 @@ python3 parser.py ../../seedfiles/example-preseed.txt
 
 # To test the React UI:
 # 1. Start a local web server
-python3 server.py
+npm install
+npm start
 # 2. Open http://localhost:8000 in your browser
 ```
 

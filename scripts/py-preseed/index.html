@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Debian Preseed UI Demo</title>
-    <!-- Load Babel for in-browser JSX transformation -->
-    <script src="./babel.min.js"></script>
     <!-- Import Map for ESM dependencies -->
     <script type="importmap">
     {
       "imports": {
         "react": "https://esm.sh/react@18.2.0",
         "react-dom": "https://esm.sh/react-dom@18.2.0",
-        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client"
+        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+        "htm": "https://esm.sh/htm@3.1.1"
       }
     }
     </script>
@@ -34,7 +33,7 @@
     <div id="root"></div>
 
     <!-- Load the application as a module using Babel -->
-    <script type="text/babel" data-type="module">
+    <script type="module">
         import React from 'react';
         import { createRoot } from 'react-dom/client';
         import PreseedLandingPage from './PreseedLandingPage.jsx';

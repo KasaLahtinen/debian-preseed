@@ -1,0 +1,12 @@
+{
+    "name": "preseed-ui-demo",
+    "version": "1.0.0",
+    "description": "Express server for Debian Preseed UI demo",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}
