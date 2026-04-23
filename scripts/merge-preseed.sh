@@ -26,14 +26,14 @@ chmod +w -R ../isofiles/boot/
 chmod +w -R ../isofiles/install.amd/
 #cp ../seedfiles/qemu-preseed.txt ./preseed.cfg
 #cp ../grub.cfg ../isofiles/boot/grub/grub.cfg
+# BIOS boot seems to be using isolinux instead of grub
 cp isolinux.cfg ../isofiles/isolinux/
 gunzip ../isofiles/install.amd/initrd.gz
 echo preseed.cfg | cpio -H newc -o -A -F ../isofiles/install.amd/initrd
 gzip ../isofiles/install.amd/initrd
 chmod -w -R ../isofiles/install.amd/
 
-
-
+# not really sure about these checksums if they're needed
 cd ../isofiles
 chmod +w md5sum.txt
 find -follow -type f ! -name md5sum.txt -print0 | xargs -0 md5sum > md5sum.txt

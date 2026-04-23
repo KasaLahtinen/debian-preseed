@@ -1,0 +1,4 @@
+plugin: community.libvirt.libvirt
+uri: 'qemu:///system'
+groups:
+  debian: inventory_hostname is match("Debian.*")
