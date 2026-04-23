@@ -1,17 +1,38 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero status.
-set -e
+# Exit immediately on errors, unset variables, and pipeline failures
+set -euo pipefail
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ISO_DIR="$BASE_DIR/iso"
 WORK_DIR="$BASE_DIR/isofiles"
 SCRIPTS_DIR="$BASE_DIR/scripts"
 
-ISOFILE_IN="${1:-$ISO_DIR/debian-12.4.0-amd64-netinst.iso}"
-ISOFILE_OUT="${2:-$ISO_DIR/preseed-debian-12.4.0-amd64-netinst.iso}"
-PRESEED_FILE="$SCRIPTS_DIR/preseed.cfg"
+# Find default input ISO (first .iso that doesn't start with preseed-)
+DEFAULT_ISO_IN=""
+shopt -s nullglob
+for iso in "$ISO_DIR"/*.iso; do
+    if [[ "$(basename "$iso")" != preseed-* ]]; then
+        DEFAULT_ISO_IN="$iso"
+        break
+    fi
+done
+shopt -u nullglob
 
+# Use argument 1, or the detected ISO
+ISOFILE_IN="${1:-$DEFAULT_ISO_IN}"
+
+if [ -z "$ISOFILE_IN" ]; then
+    echo "Error: Could not automatically detect a base ISO in $ISO_DIR."
+    echo "Please place a debian netinst iso in $ISO_DIR or specify one."
+    echo "Usage: $0 [INPUT_ISO_PATH] [OUTPUT_ISO_PATH]"
+    exit 1
+fi
+
+DEFAULT_ISO_OUT="$ISO_DIR/preseed-$(basename "$ISOFILE_IN")"
+ISOFILE_OUT="${2:-$DEFAULT_ISO_OUT}"
+
+PRESEED_FILE="$SCRIPTS_DIR/preseed.cfg"
 # check for required binaries
 required_bin=("bsdtar" "gunzip" "gzip" "genisoimage" "cpio" "md5sum")
 for bin in "${required_bin[@]}"; do
@@ -49,7 +70,7 @@ echo "Updating md5sums..."
 cd "$WORK_DIR"
 # md5sum.txt is usually part of the ISO, if it exists, update it.
 if [ -f md5sum.txt ]; then
-    find -follow -type f ! -name md5sum.txt -print0 | xargs -0 md5sum > md5sum.txt
+    find . -type f ! -name md5sum.txt -print0 | xargs -0 md5sum > md5sum.txt
 fi
 
 echo "Generating output ISO: $ISOFILE_OUT"
