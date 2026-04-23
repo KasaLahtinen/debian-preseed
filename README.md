@@ -19,6 +19,13 @@ This repository contains tools and configuration files to create customized Debi
    cd scripts
    ./merge-preseed.sh
    ```
+
+   **Alternative (Python Version):**
+   ```bash
+   cd scripts/py-preseed
+   python3 main.py
+   ```
+
 4. The output ISO will be located at `iso/preseed-debian-12.4.0-amd64-netinst.iso`.
 
 ## Manual Steps (for reference)

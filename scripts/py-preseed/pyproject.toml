@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py-preseed"
+version = "0.1.0"
+description = "Automated Debian Preseed ISO Generator"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{name = "Gemini Code Assist"}]
