@@ -36,6 +36,7 @@ Located in `scripts/py-preseed/`, this Python library parses Debian Preseed file
 - **UI-Ready Data**: Extracts descriptions, labels, and possible choices to build dropdown menus and forms dynamically.
 - **Template Support**: Handles complex template files like `amd64-main-full.txt` which contain rich metadata.
 - **JSON Schema Export**: Generates standard JSON Schemas from preseed data for frontend validation or API documentation.
+- **React Integration**: Includes a sample `PreseedForm.jsx` component to render dynamic forms with dropdowns based on parsed data.
 
 ### Usage
 You can run the parser as a standalone script to inspect parsed data or generate schemas:
