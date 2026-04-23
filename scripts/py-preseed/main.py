@@ -6,6 +6,8 @@ Ported from bash to Python for improved maintainability.
 
 import os
 import shutil
+import hashlib
+import gzip
 import subprocess
 import sys
 import argparse
@@ -13,12 +15,20 @@ from pathlib import Path
 
 def check_requirements():
     """Ensure all required system binaries are available."""
-    required = ["bsdtar", "gunzip", "gzip", "genisoimage", "cpio", "md5sum"]
+    required = ["bsdtar", "genisoimage", "cpio"]
     missing = [bin for bin in required if shutil.which(bin) is None]
     if missing:
         print(f"Error: Missing required system binaries: {', '.join(missing)}")
         print("Please install them: sudo apt install libarchive-tools genisoimage cpio gzip")
         sys.exit(1)
+
+def calculate_md5(file_path):
+    """Calculate MD5 hash of a file in chunks."""
+    hash_md5 = hashlib.md5()
+    with open(file_path, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_md5.update(chunk)
+    return hash_md5.hexdigest()
 
 def main():
     # Setup pathing relative to the script's location
@@ -83,7 +93,11 @@ def main():
         print(f"Error: Could not find initrd.gz at {initrd_gz}")
         sys.exit(1)
 
-    subprocess.run(["gunzip", str(initrd_gz)], check=True)
+    # Decompress initrd
+    with gzip.open(initrd_gz, 'rb') as f_in:
+        with open(initrd, 'wb') as f_out:
+            shutil.copyfileobj(f_in, f_out)
+    initrd_gz.unlink()
 
     # Append the preseed file using cpio
     preseed_name = preseed_src.name
@@ -92,13 +106,21 @@ def main():
                            cwd=str(preseed_src.parent)) as proc:
         proc.communicate(input=f"{preseed_name}\n".encode())
 
-    subprocess.run(["gzip", "-9", str(initrd)], check=True)
+    # Recompress initrd
+    with open(initrd, 'rb') as f_in:
+        with gzip.open(initrd_gz, 'wb', compresslevel=9) as f_out:
+            shutil.copyfileobj(f_in, f_out)
+    initrd.unlink()
 
     # 5. Update MD5 Checksums
     print("--- Updating md5sum.txt...")
-    if (work_dir / "md5sum.txt").exists():
-        cmd = "find -follow -type f ! -name md5sum.txt -print0 | xargs -0 md5sum > md5sum.txt"
-        subprocess.run(cmd, shell=True, cwd=str(work_dir), check=True)
+    md5_file = work_dir / "md5sum.txt"
+    if md5_file.exists():
+        with open(md5_file, "w") as f:
+            for path in work_dir.rglob("*"):
+                if path.is_file() and path.name != "md5sum.txt":
+                    relative_path = path.relative_to(work_dir)
+                    f.write(f"{calculate_md5(path)}  ./{relative_path}\n")
 
     # 6. Build final ISO
     print(f"--- Building final ISO: {iso_out.name}")
