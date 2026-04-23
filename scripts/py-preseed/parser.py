@@ -18,10 +18,11 @@ class PreseedParser:
 
     def __init__(self):
         self.results = []
+        self.current_group = "General"
 
     def _clean_comment(self, line: str) -> str:
         """Removes leading # and whitespace."""
-        return line.lstrip("#").strip()
+        return line.lstrip("# ").strip()
 
     def parse(self, file_path: str) -> List[Dict[str, Any]]:
         """Parses a preseed or template file into a list of structured dictionaries."""
@@ -30,11 +31,24 @@ class PreseedParser:
             raise FileNotFoundError(f"File not found: {file_path}")
 
         parsed_items = []
+        self.current_group = "General"
         current_item: Dict[str, Any] = self._reset_buffer()
         
         with open(path, 'r', encoding='utf-8') as f:
             for line in f:
                 clean_line = line.strip()
+
+                # Ignore empty lines or lines that are just a divider of #
+                if not clean_line or re.match(r"^#+$", clean_line):
+                    continue
+
+                # Detect Udeb or Category headers (e.g. #### anna.udeb or ### Localization)
+                # We check these before Description to avoid misidentifying the description start
+                if (clean_line.startswith("####") or clean_line.startswith("###")) and not clean_line.startswith(self.DESCRIPTION_START):
+                    header_text = clean_line.lstrip("# ").strip()
+                    if header_text:
+                        self.current_group = header_text
+                    continue
                 
                 # 1. Detect Description Start
                 if clean_line.startswith(self.DESCRIPTION_START):
@@ -85,7 +99,8 @@ class PreseedParser:
             "type": None,
             "value": None,
             "description": None,
-            "choices": []
+            "choices": [],
+            "group": self.current_group
         }
 
     def _post_process(self, items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -118,8 +133,11 @@ class PreseedParser:
                 continue
 
             prop_schema: Dict[str, Any] = {
-                "description": item["description"] if item["description"] else f"Configuration for {key}"
+                "description": item["description"] if item["description"] else f"Configuration for {key}",
+                "group": item.get("group", "General") # Custom metadata for UI grouping
             }
+            if item.get("group"):
+                prop_schema["description"] = f"[{item['group']}] " + prop_schema["description"]
 
             # Map preseed types to JSON schema types and add constraints
             if item["type"] == "string":
