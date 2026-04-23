@@ -16,7 +16,7 @@ const PreseedForm = ({ data, onSubmit }) => {
             if (item.key && item.value !== null) {
                 // Handle multiselect defaults which might be comma separated
                 if (item.type === 'multiselect' && typeof item.value === 'string') {
-                    initialData[item.key] = item.value ? item.value.split(',').map(s => s.strip()) : [];
+                    initialData[item.key] = item.value ? item.value.split(',').map(s => s.trim()) : [];
                 } else {
                     initialData[item.key] = item.value;
                 }
