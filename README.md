@@ -1,66 +1,42 @@
 # debian-preseed
 Automated Debian Installation Preseeding
 
-This repository contains tools and configuration files to create customized Debian installation media using the `preseed` mechanism.
-It also includes a powerful parsing engine and a React-based UI for dynamic configuration management.
-
-## Prerequisites
-
-- **System Utilities**: `bsdtar` (from libarchive-tools), `genisoimage`, `cpio`, `gzip`
-- **Python**: Python 3.8+
-- **Node.js**: (Optional) For the React-based Form Designer
+This repository contains tools and configuration files to create customized Debian installation media using the `preseed` mechanism. It includes automated shell scripts, a Python-based parser for configuration files, and a modern React frontend for dynamically designing your preseed configurations.
 
 ## Quick Start
 
-1. Download the Debian 12.4.0 Netinst ISO and place it in the `iso/` directory.
-2. Configure `scripts/preseed.cfg` to your liking.
+1. Download a Debian Netinst ISO (e.g., Debian 12) and place it in the `iso/` directory.
+2. Configure `scripts/preseed.cfg` to your liking, or use the React UI to generate a configuration.
 3. Run the automation script:
    ```bash
    cd scripts
    ./merge-preseed.sh
    ```
-
-   **Alternative (Python Version):**
-   ```bash
-   cd scripts/py-preseed
-   python3 main.py
-   ```
-
-4. The output ISO will be located at `iso/preseed-debian-12.4.0-amd64-netinst.iso`.
+   *(The script automatically discovers the base ISO in the `iso/` folder and builds a customized preseed ISO).*
+4. The output ISO will be located in the `iso/` directory prefixed with `preseed-`.
 
 ## Project Structure
 
+- `frontend/`: A Vite + React application providing a dynamic Preseed Form Designer.
+- `backend/`: A NodeJS backend, prepared for future integration with Node-RED.
 - `scripts/`: Contains the primary automation scripts.
-  - `py-preseed/`: Python-based tools including the ISO creator and parser.
-  - `merge-preseed.sh`: Legacy shell-based ISO creator.
-- `seedfiles/`: A library of preseed templates and example configurations.
-  - `bookworm/`: Full template exports for Debian 12.
-- `iso/`: Directory for source and customized ISO images.
-- `isofiles/`: Working directory used during ISO extraction and modification.
+  - `merge-preseed.sh`: Robust shell-based ISO creator.
+  - `preseed.cfg`: The active configuration injected into the installer.
+  - `py-preseed/parser.py`: Python tool for parsing preseed files and generating JSON schemas for the UI.
+- `ansible/`: Scaffolded directory structure for post-installation infrastructure automation.
+- `seedfiles/`: A library of preseed templates and example configurations (e.g., `amd64-main-full.txt`).
+- `iso/`: Directory for source and customized ISO images (ignored by git).
+- `isofiles/`: Temporary working directory used during ISO extraction and modification.
 
-## Preseed Parser Library
+## The Preseed Form Designer (Frontend)
 
-Located in `scripts/py-preseed/`, this Python library parses Debian Preseed files (`.cfg`) and template files (`.txt`). It is designed to facilitate the creation of dynamic UI components and configuration validation.
+The frontend is a modern React application that consumes the JSON output from `parser.py` to automatically generate a configuration UI. 
 
-### Key Features
-- **UI-Ready Data**: Extracts descriptions, labels, and possible choices to build dropdown menus and forms dynamically.
-- **Template Support**: Handles complex template files like `amd64-main-full.txt` which contain rich metadata.
-- **JSON Schema Export**: Generates standard JSON Schemas from preseed data for frontend validation or API documentation.
-- **React Integration**: Includes a sample `PreseedForm.jsx` component to render dynamic forms with dropdowns based on parsed data.
-
-### Usage
-You can run the parser as a standalone script to inspect parsed data or generate schemas:
-
+To start the UI:
 ```bash
-cd scripts/py-preseed
-# Parse a file and output structured JSON
-python3 parser.py ../../seedfiles/example-preseed.txt
-
-# To test the React UI:
-# 1. Start a local web server
+cd frontend
 npm install
-npm start
-# 2. Open http://localhost:8000 in your browser
+npm run dev
 ```
 
 ## Manual Steps (for reference)
@@ -87,3 +63,15 @@ genisoimage -r -J -b isolinux/isolinux.bin -c isolinux/boot.cat \
 ```
 This information was obtained from [Debian Wiki](https://wiki.debian.org/DebianInstaller/Preseed/EditIso)
 Testing.
+
+## Parsing Preseed Data
+
+The `scripts/py-preseed/parser.py` library reads Debian Preseed templates and extracts descriptions, labels, types, and choices. 
+```bash
+cd scripts/py-preseed
+# Extract template data as JSON for the React UI
+python3 parser.py ../../seedfiles/bookworm/amd64-main-full.txt
+
+# Parse the currently active configuration
+python3 parser.py ../preseed.cfg --active
+```
