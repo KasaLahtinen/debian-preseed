@@ -12,7 +12,8 @@ class PreseedParser:
     """
 
     # Matches: d-i owner/question type value (handles commented out template lines too)
-    DI_PATTERN = re.compile(r"^(?:#\s*)?d-i\s+([\w\-/._]+)\s+(\w+)\s*(.*)$")
+#    DI_PATTERN = re.compile(r"^(?:#\s*)?d-i\s+([\w\-/._]+)\s+(\w+)\s*(.*)$")
+    DI_PATTERN = re.compile(r"^d-i\s+([\w\-/._]+)\s+(\w+)\s*(.*)$")
     CHOICES_PATTERN = re.compile(r"^(?:#\s*)?Possible choices:\s*(.*)$")
     DESCRIPTION_START = "### Description:"
 

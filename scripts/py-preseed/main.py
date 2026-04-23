@@ -73,8 +73,9 @@ def main():
             print(f"{'Setting Key':<50} | {'Value'}")
             print("-" * 75)
             for item in config_data:
-                if item.get("key"):
-                    print(f"{item['key']:<50} | {item['value']}")
+                print(item)
+#                if item.get("key"):
+#                    print(f"{item['key']:<50} | {item['value']}")
             print("-" * 75 + "\n")
         except Exception as e:
             print(f"Warning: Could not summarize configuration: {e}")
