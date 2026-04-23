@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PreseedForm from './PreseedForm';
+import PreseedForm from './PreseedForm.jsx';
 
 /**
  * PreseedLandingPage - A workspace to test and generate preseed forms.

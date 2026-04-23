@@ -45,6 +45,11 @@ You can run the parser as a standalone script to inspect parsed data or generate
 cd scripts/py-preseed
 # Parse a file and output structured JSON
 python3 parser.py ../../seedfiles/example-preseed.txt
+
+# To test the React UI:
+# 1. Start a local web server
+python3 server.py
+# 2. Open http://localhost:8000 in your browser
 ```
 
 ## Manual Steps (for reference)
