@@ -30,15 +30,13 @@ The `scripts/py-preseed` directory currently suffers from a "kitchen sink" anti-
 
 ---
 
-## 3. Shell Scripts & Automation
+## 3. Shell Scripts & Automation ✅ **(COMPLETED)**
 
-The script `scripts/merge-preseed.sh` is useful but rigid.
+The script `scripts/merge-preseed.sh` has been updated to be more dynamic and robust.
 
-**Suggestions:**
-- **Remove Hardcoded ISO Names:** The script hardcodes `debian-12.4.0-amd64-netinst.iso`. Modify the script to either:
-  1. Accept the ISO name as an environment variable or flag with a clear help text.
-  2. Automatically detect the `.iso` file inside the `iso/` directory using standard shell wildcards, picking the latest version automatically.
-- **Robust Error Handling:** While `set -e` is used, adding `set -u` (treat unset variables as an error) and `set -o pipefail` will make the bash scripts much safer.
+**Completed Actions:**
+- **Removed Hardcoded ISO Names:** The script now automatically detects the base `.iso` file inside the `iso/` directory and defaults to it. It also still accepts arguments to explicitly set the input and output ISO names.
+- **Robust Error Handling:** Updated bash execution options to use `set -euo pipefail` which protects against unset variables and failed piped commands.
 
 ---
 
