@@ -12,8 +12,9 @@ class PreseedParser:
     """
 
     # Matches: d-i owner/question type value (handles commented out template lines too)
-#    DI_PATTERN = re.compile(r"^(?:#\s*)?d-i\s+([\w\-/._]+)\s+(\w+)\s*(.*)$")
-    DI_PATTERN = re.compile(r"^d-i\s+([\w\-/._]+)\s+(\w+)\s*(.*)$")
+    DI_PATTERN = re.compile(r"^(?:#\s*)?d-i\s+([\w\-/._]+)\s+(\w+)\s*(.*)$")
+    # Matches: owner question type value (for active configs, uncommented)
+    ACTIVE_PATTERN = re.compile(r"^([a-zA-Z0-9_-]+)\s+([\w\-/._]+)\s+(\w+)\s*(.*)$")
     CHOICES_PATTERN = re.compile(r"^(?:#\s*)?Possible choices:\s*(.*)$")
     DESCRIPTION_START = "### Description:"
 
@@ -93,6 +94,36 @@ class PreseedParser:
                 parsed_items.append(current_item)
 
         return self._post_process(parsed_items)
+
+    def parse_active(self, file_path: str) -> Dict[str, Any]:
+        """
+        Parses a preseed configuration file to extract the enabled (uncommented) configuration.
+        Returns a dictionary mapping keys to their active values.
+        """
+        path = Path(file_path)
+        if not path.exists():
+            raise FileNotFoundError(f"File not found: {file_path}")
+
+        active_config = {}
+        with open(path, 'r', encoding='utf-8') as f:
+            for line in f:
+                clean_line = line.strip()
+                if not clean_line or clean_line.startswith("#"):
+                    continue
+                
+                match = self.ACTIVE_PATTERN.match(clean_line)
+                if match:
+                    owner = match.group(1)
+                    key = match.group(2)
+                    type_str = match.group(3)
+                    value = match.group(4).strip()
+                    
+                    active_config[key] = {
+                        "owner": owner,
+                        "type": type_str,
+                        "value": value
+                    }
+        return active_config
 
     def _reset_buffer(self) -> Dict[str, Any]:
         return {
@@ -199,19 +230,24 @@ def main():
     parser = argparse.ArgumentParser(description="Parse Debian Preseed and template files.")
     parser.add_argument("input", help="Path to the preseed or template file")
     parser.add_argument("--schema", action="store_true", help="Output as JSON Schema instead of raw data")
+    parser.add_argument("--active", action="store_true", help="Extract only enabled/active configuration")
     
     args = parser.parse_args()
     
     preseed_parser = PreseedParser()
     try:
-        data = preseed_parser.parse(args.input)
-        
-        if args.schema:
-            output = preseed_parser.to_json_schema(data, title=Path(args.input).name)
+        if args.active:
+            output = preseed_parser.parse_active(args.input)
+            print(json.dumps(output, indent=2))
         else:
-            output = data
+            data = preseed_parser.parse(args.input)
             
-        print(json.dumps(output, indent=2))
+            if args.schema:
+                output = preseed_parser.to_json_schema(data, title=Path(args.input).name)
+            else:
+                output = data
+                
+            print(json.dumps(output, indent=2))
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
